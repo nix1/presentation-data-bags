@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Codility Presentation</title>
+
+  <meta name="description" content="Codility presentation template">
+  <meta name="author" content="Hakim El Hattab">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+  <link rel="stylesheet" href="css/reveal.css">
+  <link rel="stylesheet" href="css/theme/codility.css" id="theme">
+
+  <!-- Code syntax highlighting -->
+  <link rel="stylesheet" href="lib/css/zenburn.css">
+
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+    document.getElementsByTagName('head')[0].appendChild(link);
+  </script>
+
+  <!--[if lt IE 9]>
+  <script src="lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+
+<div class="reveal">
+
+  <!-- Any section element inside of this container is displayed as a slide -->
+  <!-- Visit http://lab.hakim.se/reveal-js/ for examples of slides -->
+  <div class="slides">
+    <section>
+      <h1>Title</h1>
+      <h3>Title</h3>
+      <p>
+        <small>Created by Krokodyl / <a href="http://codility.com">Codility</a></small>
+      </p>
+    </section>
+
+    <section data-markdown>
+        <script type="text/template">
+          ## Markdown support
+
+          Write content using inline or external Markdown.
+          Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
+
+          ```
+          <section data-markdown>
+            ## Markdown support
+
+            Write content using inline or external Markdown.
+            Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
+          </section>
+          ```
+        </script>
+      </section>
+
+    <section class="color-group-first">
+      <section class="c-title-slide">
+        <h2>First section title slide</h2>
+      </section>
+      <section>
+        <h2 class="color-codility-first">First section content slide</h2>
+      </section>
+    </section>
+    <section class="color-group-second">
+      <section class="c-title-slide">
+        <h2>Second section title slide</h2>
+      </section>
+      <section>
+        <h2>Second section content slide</h2>
+      </section>
+    </section>
+    <section class="color-group-third">
+      <section class="c-title-slide">
+        <h2>Third section title slide</h2>
+      </section>
+      <section>
+        <h2 class="color-codility-third">Third section content slide</h2>
+      </section>
+    </section>
+    <section class="color-group-fourth">
+      <section class="c-title-slide">
+        <h2>Fourth section title slide</h2>
+      </section>
+      <section>
+        <h2>Fourth section content slide</h2>
+      </section>
+    </section>
+    <section class="color-group-fifth">
+      <section class="c-title-slide">
+        <h2>Fourth section title slide</h2>
+      </section>
+      <section>
+        <h2>Fourth section content slide</h2>
+      </section>
+    </section>
+
+    <section data-background="https://farm1.staticflickr.com/544/19758248349_6d1442ecdd_b.jpg">
+      <h2>Thank you</h2>
+      <h3>BTW, We are hiring!</h3>
+      <p>
+        Interested? Visit <a href="https://codility.com/jobs/">codility.com/jobs</a>
+      </p>
+    </section>
+
+  </div>
+
+  <a class="c-codility-logo" href="http://codility.com"></a>
+
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+
+  // Full list of configuration options available at:
+  // https://github.com/hakimel/reveal.js#configuration
+  Reveal.initialize({
+                      controls: true,
+                      progress: true,
+                      history: true,
+                      center: true,
+
+                      transition: 'zoom', // none/fade/slide/convex/concave/zoom
+
+                      // Optional reveal.js plugins
+                      dependencies: [
+                        {
+                          src: 'lib/js/classList.js', condition: function () {
+                          return !document.body.classList;
+                        }
+                        },
+                        {
+                          src: 'plugin/markdown/marked.js', condition: function () {
+                          return !!document.querySelector('[data-markdown]');
+                        }
+                        },
+                        {
+                          src: 'plugin/markdown/markdown.js', condition: function () {
+                          return !!document.querySelector('[data-markdown]');
+                        }
+                        },
+                        {
+                          src: 'plugin/highlight/highlight.js', async: true, callback: function () {
+                          hljs.initHighlightingOnLoad();
+                        }
+                        },
+                        {src: 'plugin/zoom-js/zoom.js', async: true},
+                        {src: 'plugin/notes/notes.js', async: true}
+                      ]
+                    });
+
+var COLORS = ['#07A2F4','#87EE87', '#FFEB40', '#FF644C', '#FF689C'];
+
+// TODO: find a non-complicated way to the same in CSS?
+Reveal.addEventListener( 'slidechanged', function( event ) {
+    // event.previousSlide, event.currentSlide, event.indexh, event.indexv
+  var $ = document.querySelectorAll.bind(document);
+  var slide = event.currentSlide;
+  // Add the .invert class to .reveal for title slides
+  var classList = $('.reveal')[0].classList;
+  if (slide.classList.contains('c-title-slide')) {
+    classList.add('invert');
+  } else {
+    classList.remove('invert');
+  }
+
+  function getColor(classList) {
+    if (classList.contains('color-group-first')) {
+      return COLORS[0]
+    }
+    if (classList.contains('color-group-second')) {
+      return COLORS[1]
+    }
+    if (classList.contains('color-group-third')) {
+      return COLORS[2];
+    }
+    if (classList.contains('color-group-fourth')) {
+      return COLORS[3];
+    }
+    if (classList.contains('color-group-fifth')) {
+      return COLORS[4];
+    }
+  }
+
+  // Handle section colors on elements outside of the slide
+  // (yeah, setTimeout - see https://github.com/hakimel/reveal.js/issues/1254)
+  setTimeout(function () {
+    var color = getColor(slide.classList) || getColor(slide.parentElement.classList);
+    $('.progress span')[0].style.background = color || '';
+    var controls = $('.controls button'),
+      el;
+    for (var i = 0; i < controls.length; i += 1) {
+      el = controls[i];
+      var borderColor = (el.classList.contains('enabled') && color) ? color : '';
+      if (el.classList.contains('navigate-left')) {
+        el.style['border-right-color'] = borderColor;
+      } else if (el.classList.contains('navigate-right')) {
+        el.style['border-left-color'] = borderColor;
+      } else if (el.classList.contains('navigate-up')) {
+        el.style['border-bottom-color'] = borderColor;
+      } else if (el.classList.contains('navigate-down')) {
+        el.style['border-top-color'] = borderColor;
+      }
+    }
+  },0);
+} );
+
+</script>
+
+</body>
+</html>
