@@ -327,6 +327,7 @@ section.c-title-slide {
  *********************************************/
 .reveal .controls {
   bottom: 45px;
+  display: none !important; /* they are distracting, comment out if you need them */
 }
 
 .reveal .controls .navigate-left,
