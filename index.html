@@ -43,19 +43,23 @@
   <!-- Visit http://lab.hakim.se/reveal-js/ for examples of slides -->
   <div class="slides">
     <section>
-      <h2 style="">Passing initial data to React components</h2>
-      <h3>How JSON <i>data bags</i> help us</h3>
+      <h2>Initial data<br>for<br>React components</h2>
+      <h4 style="color: #07A2F4">and the concept of <i>data bags</i></h4>
       <p>
-        <small>Paweł Sierszeń</small>
+        <small>Paweł Sierszeń<br/>paul@codility.com</small>
       </p>
     </section>
 
     <section class="color-group-first">
       <section class="c-title-slide">
-        <h2>Server side rendering with initial data is quite hard</h2>
+        <h2>Example use case</h2>
+        <p>A list of items, loaded from the backend.<br/>Quite static. Different between users.</p>
+        <img src="img/task_list.png">
       </section>
       <section>
-        <h2 class="color-codility-first">...but generic server-side rendering is even harder</h2>
+        <h2>Best solution: server side rendering</h2>
+
+        <h3>Might be hard.<br/>No, our backend is not node.js ;)</h3>
       </section>
     </section>
     <section class="color-group-second">
@@ -74,10 +78,9 @@
       </section>
       <section>
         <h2 class="color-codility-third">How about this?</h2>
-        <pre><code class="hljs html">
-// task_list.html
+        <pre><code class="hljs html">// task_list.html
 <div id="all-tasks-list" class="ui container"></div>
-  <script>var tasks = {{ task_info_list|jsonify }};
+<script>var tasks = {{ task_info_list|jsonify }};
   ReactDOM.render(
     React.createElement(TaskList, {
         tasks: tasks,
@@ -89,15 +92,15 @@
         </code></pre>
       </section>
       <section>
-        <h2>Oh, quite horrible</h2>
+        <h2>Oh, quite horrible.</h2>
         <ul>
-          <li>Everything is global</li>
-          <li>Django templates in JS in HTML, inception</li>
-          <li>No way to unit-test this snippet</li>
-          <li>Potential XSS issues</li>
-          <li>Content-Security-Policy? Forget.</li>
+          <li>Everything is <span class="colored">global</span>.</li>
+          <li>Django templates in JS in HTML. <span class="colored">Inception</span>.</li>
+          <li>No way to <span class="colored">unit-test</span> this snippet.</li>
+          <li>Potential <span class="colored">XSS</span> issues.</li>
+          <li><span class="colored">Content-Security-Policy</span>? Forget.</li>
         </ul>
-        <h4>Can we do better?</h4>
+        <h4 style="margin-top: 1em">Can we do better?</h4>
       </section>
     </section>
     <section class="color-group-fourth">
