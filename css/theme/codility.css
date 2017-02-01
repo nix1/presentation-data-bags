@@ -27,23 +27,28 @@ section.c-title-slide {
  *********************************************/
 
 .reveal .color-group-first h1,
-.reveal .color-group-first h2 {
+.reveal .color-group-first h2,
+.colored {
   color: #07A2F4;
 }
 .reveal .color-group-second h1,
-.reveal .color-group-second h2 {
+.reveal .color-group-second h2,
+.reveal .color-group-second .colored {
   color: #87EE87;
 }
 .reveal .color-group-third h1,
-.reveal .color-group-third h2 {
+.reveal .color-group-third h2,
+.reveal .color-group-third .colored {
   color: #FFEB40;
 }
 .reveal .color-group-fourth h1,
-.reveal .color-group-fourth h2 {
+.reveal .color-group-fourth h2,
+.reveal .color-group-fourth .colored {
   color: #FF644C;
 }
 .reveal .color-group-fifth h1,
-.reveal .color-group-fifth h2 {
+.reveal .color-group-fifth h2,
+.reveal .color-group-fifth .colored {
   color: #FF689C;
 }
 
