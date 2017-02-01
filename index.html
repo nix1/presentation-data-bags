@@ -43,78 +43,86 @@
   <!-- Visit http://lab.hakim.se/reveal-js/ for examples of slides -->
   <div class="slides">
     <section>
-      <h1>Title</h1>
-      <h3>Title</h3>
+      <h2 style="">Passing initial data to React components</h2>
+      <h3>How JSON <i>data bags</i> help us</h3>
       <p>
-        <small>Created by Krokodyl / <a href="http://codility.com">Codility</a></small>
+        <small>Paweł Sierszeń</small>
       </p>
     </section>
 
-    <section data-markdown>
-        <script type="text/template">
-          ## Markdown support
-
-          Write content using inline or external Markdown.
-          Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
-
-          ```
-          <section data-markdown>
-            ## Markdown support
-
-            Write content using inline or external Markdown.
-            Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
-          </section>
-          ```
-        </script>
-      </section>
-
     <section class="color-group-first">
       <section class="c-title-slide">
-        <h2>First section title slide</h2>
+        <h2>Server side rendering with initial data is quite hard</h2>
       </section>
       <section>
-        <h2 class="color-codility-first">First section content slide</h2>
+        <h2 class="color-codility-first">...but generic server-side rendering is even harder</h2>
       </section>
     </section>
     <section class="color-group-second">
       <section class="c-title-slide">
-        <h2>Second section title slide</h2>
+        <h2>so let's just use AJAX!</h2>
       </section>
       <section>
-        <h2>Second section content slide</h2>
+        <h2>Result</h2>
+        <img src="img/spin.svg" style="border: none; background: none; box-shadow: none;"/>
+        <p>(blank page, loaders, placeholders)</p>
       </section>
     </section>
     <section class="color-group-third">
       <section class="c-title-slide">
-        <h2>Third section title slide</h2>
+        <h2>Let's make it synchronous!</h2>
       </section>
       <section>
-        <h2 class="color-codility-third">Third section content slide</h2>
+        <h2 class="color-codility-third">How about this?</h2>
+        <pre><code class="hljs html">
+// task_list.html
+<div id="all-tasks-list" class="ui container"></div>
+  <script>var tasks = {{ task_info_list|jsonify }};
+  ReactDOM.render(
+    React.createElement(TaskList, {
+        tasks: tasks,
+        isSuperuser: {{request.user.is_superuser|jsonify}},
+        showUpload: {{request.user.can_see_upload_tasks|jsonify}}
+    }),
+    document.getElementById('all-tasks-list'));
+</script>
+        </code></pre>
+      </section>
+      <section>
+        <h2>Oh, quite horrible</h2>
+        <ul>
+          <li>Everything is global</li>
+          <li>Django templates in JS in HTML, inception</li>
+          <li>No way to unit-test this snippet</li>
+          <li>Potential XSS issues</li>
+          <li>Content-Security-Policy? Forget.</li>
+        </ul>
+        <h4>Can we do better?</h4>
       </section>
     </section>
     <section class="color-group-fourth">
       <section class="c-title-slide">
-        <h2>Fourth section title slide</h2>
+        <h2>Data bags!</h2>
       </section>
       <section>
-        <h2>Fourth section content slide</h2>
+        <h2>...example (django view using data bag tag + getDataBag + template)</h2>
       </section>
     </section>
     <section class="color-group-fifth">
       <section class="c-title-slide">
-        <h2>Fourth section title slide</h2>
+        <h2>Let's go a step further</h2>
       </section>
       <section>
-        <h2>Fourth section content slide</h2>
+        <h2>context.js code (base+js)</h2>
+      </section>
+      <section>
+        <h3>Simple &amp; no mess with templates at all!</h3>
       </section>
     </section>
 
     <section data-background="https://farm1.staticflickr.com/544/19758248349_6d1442ecdd_b.jpg">
-      <h2>Thank you</h2>
-      <h3>BTW, We are hiring!</h3>
-      <p>
-        Interested? Visit <a href="https://codility.com/jobs/">codility.com/jobs</a>
-      </p>
+      <h2>Thank you!</h2>
+      <h3>@PawelSierszen, paul@codility.com</h3>
     </section>
 
   </div>
