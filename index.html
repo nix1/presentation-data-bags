@@ -79,7 +79,7 @@
       <section>
         <h2 class="color-codility-third">How about this?</h2>
         <pre><code class="hljs html">// task_list.html
-<div id="task-list" class="ui container"></div>
+<div id="task-list"></div>
 <script>var tasks = {{ task_info_list|jsonify }};
   ReactDOM.render(
     React.createElement(TaskList, {
@@ -97,7 +97,7 @@
           <li>Django templates in JS in HTML. <span class="colored">Inception</span>.</li>
           <li>No way to <span class="colored">unit-test</span> this snippet.</li>
           <li>Potential <span class="colored">XSS</span> issues.</li>
-          <li><span class="colored">Content-Security-Policy</span>? Forget.</li>
+          <li><span class="colored">Content-Security-Policy</span>? Not really.</li>
         </ul>
         <h4 style="margin-top: 1em">Can we do better?</h4>
       </section>
@@ -111,23 +111,27 @@
 
         <pre><code class="hljs python">// task_list.py view
 data = { 'tasks': tasks, 'show_upload': user.can_see_upload }
-return { 'task_list_data', data }</code></pre>
+return { 'task_list_data': data }</code></pre>
 
         <pre><code class="hljs html">// task_list.html
 {% load data_bag %}
-<div id="task-list" class="ui container"></div>
+<div id="task-list"></div>
 {% data_bag "task-list" task_list_data %}</code></pre>
-<pre><code class="hljs html">// generated html
-<script id="data-bag-task-list" type="application/json" id="task">{
-  "tasks": [...], "showUpload": true }
+<h5>Generated HTML:</h5>
+<pre><code class="hljs html"><script id="data-bag-task-list" type="application/json">
+  { "tasks": [...], "showUpload": true }
 </script>
 </code></pre>
       </section>
       <section>
+<h2>Then, get the data in JS</h2>
 <pre><code class="hljs javascript">// task-list.js
-import { getDataBag } from 'utils/data-bag';
-const settings = getDataBag('task-list');
-// ...mount the component</code></pre>
+import getDataBag from 'utils/get-data-bag';
+const target = document.getElementById('task-list');
+if (target) {
+  const settings = getDataBag('task-list');
+  // ...create & mount the component
+}</code></pre>
       </section>
     </section>
     <section class="color-group-fifth">
@@ -135,11 +139,35 @@ const settings = getDataBag('task-list');
         <h2>Let's go a step further</h2>
       </section>
       <section>
-        <h2>context.js code (base+js)</h2>
+        <h2>Default data bag</h2>
+        <h3>js context</h3>
+
+        <pre><code class="hljs html">// base_template.html
+{% load data_bag %}
+{% data_bag "context" js_context %}</code></pre>
+
+<pre><code class="hljs html">// generated html
+<script id="data-bag-context" type="application/json">{
+  "tasks": [...], "showUpload": true }
+</script></code></pre>
+
+        <p><i>Context</i> exists in each page. Might be empty.</p>
+
+      </section>
+      <section>
+        <h2>Backend view</h2>
+        <pre><code class="hljs python"># task_list.py view
+data = { 'tasks': tasks, 'show_upload': user.can_see_upload }
+js_context = { 'taskList': data }
+return { 'js_context': js_context }</code></pre>
+
+<h2>React component</h2>
 <pre><code class="hljs javascript">// task-list.js
 import context from 'context';
-const settings = getDataBag('task-list');
-// ...mount the component</code></pre>
+const settings = context.taskList;
+if (settings) {
+  // ...mount the component
+}</code></pre>
       </section>
       <section>
         <h3>Simple &amp; no mess with html!</h3>
