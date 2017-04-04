@@ -396,3 +396,6 @@ section.c-title-slide {
   vertical-align: bottom !important;
   margin: 0 !important;
 }
+
+.u-quotes:before { content: open-quote }
+.u-quotes:after { content: close-quote }

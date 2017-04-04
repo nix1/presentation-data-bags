@@ -53,7 +53,7 @@
     <section class="color-group-first">
       <section class="c-title-slide">
         <h2>Example use case</h2>
-        <p>A list of items, loaded from the backend.<br/>Quite static. Different between users.</p>
+        <p>A list of items, loaded by the frontend.<br/>Quite static. Different between users, has secrets.</p>
         <img src="img/task_list.png">
       </section>
       <section>
@@ -70,6 +70,7 @@
         <h2>Result</h2>
         <img src="img/spin.svg" style="border: none; background: none; box-shadow: none;"/>
         <p>(blank page, loaders, placeholders)</p>
+        <p class="u-quotes">progressive</p>
       </section>
     </section>
     <section class="color-group-third">
@@ -98,7 +99,7 @@
           <li>No way to <span class="colored">unit-test</span> this snippet.</li>
           <li>Potential <span class="colored">XSS</span> issues.</li>
           <li><span class="colored">Content-Security-Policy</span>? Not really.</li>
-          <li>Limited to <span class="colored">ES5</span>.</li>
+          <li>Limited to <span class="colored">ES5</span>, no transpilers.</li>
         </ul>
         <h4 style="margin-top: 1em">Can we do better?</h4>
       </section>
