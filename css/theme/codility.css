@@ -54,6 +54,7 @@ section.c-title-slide {
 
 .c-codility-logo {
   display: block;
+  display: none;
   position: absolute !important; /* override 'position: relative' for '.reveal a' */
   height: 7%;
   width: 20%;
